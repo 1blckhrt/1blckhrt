@@ -1,4 +1,4 @@
-import { DATE_OF_BIRTH, TIME_FORMAT_OPTIONS } from "./constants";
+import { DATE_OF_BIRTH, LANYARD_URL, STATUS_COLORS, TIME_FORMAT_OPTIONS } from "./constants";
 
 /*
  * Calculates my age.
@@ -23,5 +23,56 @@ export function displayCurrentTime() {
   const timeElement = document.querySelector<HTMLSpanElement>("#current-time");
   if (timeElement) {
     timeElement.textContent = formattedTime;
+  }
+}
+
+/*
+ * Fetches my Discord status via Lanyard.
+ */
+export async function getStatus() {
+  try {
+    const response = await fetch(LANYARD_URL, { cache: "no-store" });
+    const { data } = await response.json();
+    return data.discord_status || "Offline";
+  } catch {
+    return "offline";
+  }
+}
+
+/*
+ * Displays a small colored circle based on the Discord status.
+ */
+export async function displayStatus() {
+  const status = await getStatus();
+  const statusColor = STATUS_COLORS[status] || "gray";
+
+  const statusCircleElement = document.querySelector<HTMLSpanElement>("#status-circle");
+  if (statusCircleElement) {
+    statusCircleElement.style.display = "inline-block";
+    statusCircleElement.style.width = "12px";
+    statusCircleElement.style.height = "12px";
+    statusCircleElement.style.borderRadius = "50%";
+    statusCircleElement.style.backgroundColor = statusColor;
+  }
+
+  const statusText = document.querySelector<HTMLSpanElement>("#status-text");
+
+  if (statusText) {
+    switch (status) {
+      case "online":
+        statusText.textContent = "Online";
+        break;
+      case "idle":
+        statusText.textContent = "Idle";
+        break;
+      case "dnd":
+        statusText.textContent = "Do Not Disturb";
+        break;
+      case "offline":
+        statusText.textContent = "Offline";
+        break;
+      default:
+        statusText.textContent = "Unknown";
+    }
   }
 }

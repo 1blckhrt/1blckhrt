@@ -13,15 +13,6 @@ export const STATUS_COLORS: Record<string, string> = {
   offline: "gray",
 };
 
-export const SOCIAL_MEDIA_LINKS = {
-  Email: "mailto:blckhrt.music111@gmail.com",
-  GitHub: "https://github.com/1blckhrt",
-  Instagram: "https://www.instagram.com/1blckhrt/",
-  YouTube: "https://www.youtube.com/@1blckhrt",
-  SoundCloud: "https://soundcloud.com/1blckhrt",
-  DiscordServer: "https://discord.gg/ZThGWV4tWU",
-};
-
 export const TIME_FORMAT_OPTIONS = {
   timeZone: "America/New_York",
   hour: "numeric",

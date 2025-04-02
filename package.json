@@ -3,11 +3,11 @@
   "description": "My website built with Vite, Tailwind CSS, and TypeScript",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://1blckhrt.github.io/website",
+  "homepage": "https://1blckhrt.github.io/1blckhrt",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && npx @tailwindcss/cli -i src/tailwind.css -o src/output.css",
     "preview": "vite preview",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

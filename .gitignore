@@ -26,4 +26,5 @@ tsconfig.tsbuildinfo
 
 # Tailwind CSS
 src/styles.css
+src/output.css
 output.css
